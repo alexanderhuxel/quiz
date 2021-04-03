@@ -1,0 +1,61 @@
+$background: #190e4d
+$active: #ea3367
+$passive: #ffffff
+$font-light: #fce5eb
+$font-dark: #545454
+$outside: #e12b70
+$font: 'Open Sans', sans-serif
+html
+    overflow: hidden
+body
+    width: 100vw
+    height: 100vh
+    margin: 0
+    background: $background
+    font-family: $font
+    position: relative
+
+header
+    height: 10vh
+    width: 100%
+    #category
+        margin-top: 50px
+        color: $font-light
+        font-weight: 700
+        text-align: center
+        font-size: 3rem
+        font-family: $font
+    #progbar
+        letter-spacing: .5rem
+        color: $font-light
+        font-weight: 700
+        text-align: center
+        font-size: 2rem
+main
+    width: 80%
+    height: 90vh
+    display: flex
+    margin: 0px 10% 0px 10%
+    #questions
+        margin: 100px 0px 100px 0px
+        text-align: center
+        .question
+            color: $font-light
+            font-size: 1.5rem
+    #answer
+        display: flex
+        flex-wrap: wrap
+
+        .button
+            margin: 10px 0px 10px 0px
+            font-size: 1rem
+            font-weight: 700
+            width: 100%
+            font-family: $font
+            border: none
+            height: 60px
+            border-radius: 50px
+            background: #fff
+            &:hover
+                background: $active
+                color: $font-light
