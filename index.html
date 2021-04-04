@@ -14,7 +14,26 @@
 </head>
 
 <body id="body" onload="init()">
-
+    <div id="startscreen">
+        <h1>Please Choose a Category and a Difficulty to start the Game</h1>
+        <section>
+            <label>
+                Choose your Category:
+            </label>
+            <select id="cat">
+                <option value="film">Entertainment Film</option>
+                <option value="music">Entertainment Music</option>
+                <option value="history">History</option>
+            </select>
+            <label> Choose your Difficulty:</label>
+            <select id="dif">
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+            </select>
+            <button id="start" onclick="sendCategory()">Play</button>
+        </section>
+    </div>
     <Header>
         <div id="category">
             Quiz Category

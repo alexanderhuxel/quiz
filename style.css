@@ -58,20 +58,21 @@ main {
     align-items: center;
     display: flex;
     flex-wrap: wrap; }
-    main #answer button {
-      margin: 10px 0px 10px 0px;
-      font-size: 1rem;
-      font-weight: 700;
-      width: 80vw !important;
-      font-family: "Open Sans", sans-serif;
-      border: none;
-      height: 60px;
-      border-radius: 50px;
-      background: #fff; }
-      main #answer button:hover {
-        background: #ea3367;
-        color: #fce5eb;
-        cursor: pointer; }
+
+button {
+  margin: 10px 0px 10px 0px;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 80vw !important;
+  font-family: "Open Sans", sans-serif;
+  border: none;
+  height: 60px;
+  border-radius: 50px;
+  background: #fff; }
+  button:hover {
+    background: #ea3367;
+    color: #fce5eb;
+    cursor: pointer; }
 
 #end {
   width: 100%;
@@ -105,19 +106,55 @@ main {
         margin: 0px 10px 0px 10px; }
     #end #data #percent {
       text-align: center; }
-    #end #data button {
-      margin: 10px 0px 10px 0px;
-      font-size: 1rem;
-      font-weight: 700;
-      width: 80vw !important;
-      font-family: "Open Sans", sans-serif;
+
+#startscreen {
+  transition: none;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  position: absolute;
+  left: 0px;
+  right: 0x;
+  bottom: 0px;
+  top: 0px;
+  background: #190e4d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fce5eb; }
+  #startscreen h1 {
+    width: 80%;
+    text-align: center;
+    margin: 10px 0px 150px 0px; }
+  #startscreen section {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    font-size: 1.5rem; }
+    #startscreen section button {
+      margin-top: 20px; }
+    #startscreen section label {
+      margin: 20px 0px 20px 0px; }
+    #startscreen section select {
+      color: #fce5eb;
+      margin: 50px 0px 50px 0px;
+      text-align: center;
+      width: 100%;
+      height: 50px;
+      font-size: 100%;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 0;
+      background-color: #190e4d;
       border: none;
-      height: 60px;
-      border-radius: 50px;
-      background: #fff; }
-      #end #data button:hover {
-        background: #ea3367;
-        color: #fce5eb;
-        cursor: pointer; }
+      border-bottom: 2px solid #545454;
+      color: white;
+      appearance: none;
+      padding: 10px;
+      padding-right: 38px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease; }
 
 /*# sourceMappingURL=style.css.map */

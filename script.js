@@ -2,10 +2,32 @@
 
 // CONFIG
 const Categorys = [
-    "https://opentdb.com/api.php?amount=50&category=11&type=multiple",
-    "https://opentdb.com/api.php?amount=50&category=12&type=multiple",
-    "https://opentdb.com/api.php?amount=50&category=23&type=multiple"
+    {
+        category: "film",
+        difficult:
+        {
+            "easy": "https://opentdb.com/api.php?amount=50&category=11&difficulty=easy&type=multiple",
+            "medium": "https://opentdb.com/api.php?amount=50&category=11&difficulty=medium&type=multiple",
+            "hard": "https://opentdb.com/api.php?amount=50&category=11&difficulty=hard&type=multiple",
+        },
+        category: "music",
+        difficult:
+        {
+            "easy": "https://opentdb.com/api.php?amount=50&category=12&difficulty=easy&type=multiple",
+            "medium": "https://opentdb.com/api.php?amount=50&category=12&difficulty=medium&type=multiple",
+            "hard": "https://opentdb.com/api.php?amount=50&category=12&difficulty=hard&type=multiple",
+        },
+        category: "history",
+        difficult:
+        {
+            "easy": "https://opentdb.com/api.php?amount=50&category=23&difficulty=easy&type=multiple",
+            "medium": "https://opentdb.com/api.php?amount=50&category=23&difficulty=medium&type=multiple",
+            "hard": "https://opentdb.com/api.php?amount=50&category=23&difficulty=hard&type=multiple",
+        }
+    }
 ]
+
+let Link = "";
 let Questions = [];
 let True = 0;
 let False = 0;
@@ -31,12 +53,26 @@ function addHandler() {
 }
 // Eventlisteners
 
+
+
 let list = ['<button class="button" id="button1"></button>', '<button class="button" id="button2"></button>', '<button class="button" id="button3"></button>', '<button   id="button4"></button>']
 list = list.sort(() => Math.random() - 0.5)
 
 
 function init() {
     drawQuiz();
+}
+
+function sendCategory() {
+    let selectorOne = document.getElementById("cat").selectedIndex;
+    let selectorTwo = document.getElementById("dif").selectedIndex;
+    let Cat = document.getElementById("cat").options[selectorOne].value;
+    let Dif = document.getElementById("dif").options[selectorTwo].value;
+    if (Cat == "music" && Dif == "easy") {
+        Link == Categorys[0].difficult.easy
+        document.getElementById("startscreen").style.display = "none"
+    }
+
 }
 
 function drawQuiz() {
@@ -47,7 +83,7 @@ function drawQuiz() {
 }
 
 async function loadCategory() {
-    const response = await fetch(Categorys[0]);
+    const response = await fetch(Categorys[0].difficult.hard);
     const category = await response.json();
     return category
 }
@@ -62,7 +98,7 @@ function useDateofFetch() {
     document.getElementById("button2").innerHTML = `${Questions[i].incorrect_answers[1]} `;
     document.getElementById("button3").innerHTML = `${Questions[i].incorrect_answers[2]} `;
     document.getElementById("button4").innerHTML = `${Questions[i].correct_answer} `;
-    document.getElementById("position").innerHTML = `${i + 1}`;
+    document.getElementById("position").innerHTML = `${i}`;
 }
 
 function nextQuestion() {
@@ -79,8 +115,10 @@ function nextQuestion() {
         document.getElementById("button3").innerHTML = `${Questions[i].incorrect_answers[2]} `;
         document.getElementById("button4").innerHTML = `${Questions[i].correct_answer} `;
         document.getElementById("position").innerHTML = `${i}`;
+        console.log(i)
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", async () => {
     let category = [];
@@ -89,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (e) {
         console.log("Error" + e);
     }
-    for (let i = 1; i < 17; i++) {
+    for (let i = 0; i < 16; i++) {
         Questions.push(category.results[i])
     }
     Questions.push(category);
@@ -97,6 +135,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     addHandler();
 
 })
+
 
 function restart() {
     window.location.href = "/";
