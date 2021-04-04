@@ -5,9 +5,16 @@ $font-light: #fce5eb
 $font-dark: #545454
 $outside: #e12b70
 $font: 'Open Sans', sans-serif
+.active
+    background: $active!important
+    color: $passive!important
 html
     overflow: hidden
 body
+    align-items: center
+    display: flex
+    flex-direction: column
+    position: relative
     width: 100vw
     height: 100vh
     margin: 0
@@ -31,26 +38,36 @@ header
         font-weight: 700
         text-align: center
         font-size: 2rem
+        display: flex
+        justify-content: center
+        align-items: center
+        span
+            display: flex!important
 main
-    width: 80%
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 90%
     height: 90vh
     display: flex
-    margin: 0px 10% 0px 10%
     #questions
         margin: 100px 0px 100px 0px
+        height: 100px
         text-align: center
         .question
             color: $font-light
             font-size: 1.5rem
     #answer
+        justify-content: center
+        align-items: center
         display: flex
         flex-wrap: wrap
 
-        .button
+        button
             margin: 10px 0px 10px 0px
             font-size: 1rem
             font-weight: 700
-            width: 100%
+            width: 80vw!important
             font-family: $font
             border: none
             height: 60px
@@ -59,3 +76,50 @@ main
             &:hover
                 background: $active
                 color: $font-light
+                cursor: pointer
+#end
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background: $background
+    display: flex
+    flex-direction: column
+    align-items: center
+    h1
+        text-align: center
+        color: $font-light
+    #svg
+        width: 100%
+    #data
+        font-size: 2rem
+        font-family: $font
+        font-weight: 700
+        display: flex
+        flex-direction: column
+        color: $font-light
+        #q
+            display: flex
+            #trueq
+                margin: 0px 10px 0px 10px
+            #falseq
+                margin: 0px 10px 0px 10px
+        #percent
+            text-align: center
+        button
+            margin: 10px 0px 10px 0px
+            font-size: 1rem
+            font-weight: 700
+            width: 80vw!important
+            font-family: $font
+            border: none
+            height: 60px
+            border-radius: 50px
+            background: #fff
+            &:hover
+                background: $active
+                color: $font-light
+                cursor: pointer

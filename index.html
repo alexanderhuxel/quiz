@@ -13,13 +13,18 @@
     <title>Document</title>
 </head>
 
-<body onload="init()">
+<body id="body" onload="init()">
+
     <Header>
         <div id="category">
             Quiz Category
         </div>
         <div id="progbar">
-            1/15
+            <span>
+                <p id="position"></p>
+                <p>/</p>
+                <p id="finish"></p>
+            </span>
         </div>
     </Header>
     <main>

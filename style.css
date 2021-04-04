@@ -1,7 +1,15 @@
+.active {
+  background: #ea3367 !important;
+  color: #ffffff !important; }
+
 html {
   overflow: hidden; }
 
 body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
   width: 100vw;
   height: 100vh;
   margin: 0;
@@ -24,34 +32,92 @@ header {
     color: #fce5eb;
     font-weight: 700;
     text-align: center;
-    font-size: 2rem; }
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    header #progbar span {
+      display: flex !important; }
 
 main {
-  width: 80%;
-  height: 90vh;
   display: flex;
-  margin: 0px 10% 0px 10%; }
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90vh;
+  display: flex; }
   main #questions {
     margin: 100px 0px 100px 0px;
+    height: 100px;
     text-align: center; }
     main #questions .question {
       color: #fce5eb;
       font-size: 1.5rem; }
   main #answer {
+    justify-content: center;
+    align-items: center;
     display: flex;
     flex-wrap: wrap; }
-    main #answer .button {
+    main #answer button {
       margin: 10px 0px 10px 0px;
       font-size: 1rem;
       font-weight: 700;
-      width: 100%;
+      width: 80vw !important;
       font-family: "Open Sans", sans-serif;
       border: none;
       height: 60px;
       border-radius: 50px;
       background: #fff; }
-      main #answer .button:hover {
+      main #answer button:hover {
         background: #ea3367;
-        color: #fce5eb; }
+        color: #fce5eb;
+        cursor: pointer; }
+
+#end {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #190e4d;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  #end h1 {
+    text-align: center;
+    color: #fce5eb; }
+  #end #svg {
+    width: 100%; }
+  #end #data {
+    font-size: 2rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    color: #fce5eb; }
+    #end #data #q {
+      display: flex; }
+      #end #data #q #trueq {
+        margin: 0px 10px 0px 10px; }
+      #end #data #q #falseq {
+        margin: 0px 10px 0px 10px; }
+    #end #data #percent {
+      text-align: center; }
+    #end #data button {
+      margin: 10px 0px 10px 0px;
+      font-size: 1rem;
+      font-weight: 700;
+      width: 80vw !important;
+      font-family: "Open Sans", sans-serif;
+      border: none;
+      height: 60px;
+      border-radius: 50px;
+      background: #fff; }
+      #end #data button:hover {
+        background: #ea3367;
+        color: #fce5eb;
+        cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */
