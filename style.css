@@ -21,7 +21,7 @@ header {
     color: #fce5eb;
     font-weight: 700;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: "Open Sans", sans-serif; }
   header #progbar {
     letter-spacing: 0.5rem;
@@ -29,7 +29,7 @@ header {
     margin-bottom: 20px;
     font-weight: 700;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1rem;
     display: flex;
     justify-content: center;
     align-items: center; }
@@ -39,7 +39,7 @@ header {
 main {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: baseline;
   width: 90%;
   height: 90vh;
   display: flex; }
@@ -55,7 +55,7 @@ main {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 100px; }
+    margin-top: 50px; }
 
 button {
   margin: 10px 0px 10px 0px;
@@ -126,6 +126,7 @@ button {
   align-items: center;
   color: #fce5eb; }
   #startscreen h1 {
+    font-size: 1.2rem;
     width: 80%;
     text-align: center; }
   #startscreen section {
@@ -139,7 +140,7 @@ button {
       text-align: center;
       width: 100%;
       height: 50px;
-      font-size: 100%;
+      font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
       border-radius: 0;

@@ -1,38 +1,10 @@
 
 
 // CONFIG
-const Categorys = [
-    {
-        category: "film",
-        difficult:
-        {
-            "easy": "https://opentdb.com/api.php?amount=50&category=11&difficulty=easy&type=multiple",
-            "medium": "https://opentdb.com/api.php?amount=50&category=11&difficulty=medium&type=multiple",
-            "hard": "https://opentdb.com/api.php?amount=50&category=11&difficulty=hard&type=multiple",
-        },
-        category: "music",
-        difficult:
-        {
-            "easy": "https://opentdb.com/api.php?amount=50&category=12&difficulty=easy&type=multiple",
-            "medium": "https://opentdb.com/api.php?amount=50&category=12&difficulty=medium&type=multiple",
-            "hard": "https://opentdb.com/api.php?amount=50&category=12&difficulty=hard&type=multiple",
-        },
-        category: "history",
-        difficult:
-        {
-            "easy": "https://opentdb.com/api.php?amount=50&category=23&difficulty=easy&type=multiple",
-            "medium": "https://opentdb.com/api.php?amount=50&category=23&difficulty=medium&type=multiple",
-            "hard": "https://opentdb.com/api.php?amount=50&category=23&difficulty=hard&type=multiple",
-        }
-    }
-]
-
-let Link;
 let Questions = [];
 let True = 0;
 let False = 0;
 let i = 0;
-
 // CONFIG
 // Eventlisteners
 function addHandler() {
@@ -63,14 +35,6 @@ function init() {
     drawQuiz();
 }
 
-function sendCategory() {
-    let selectorOne = document.getElementById("cat").selectedIndex;
-    let selectorTwo = document.getElementById("dif").selectedIndex;
-    let Cat = document.getElementById("cat").options[selectorOne].value;
-    let Dif = document.getElementById("dif").options[selectorTwo].value;
-    document.getElementById("startscreen").style.display = "none";
-
-}
 
 function drawQuiz() {
     for (let i = 0; i < 4; i++) {
@@ -80,7 +44,11 @@ function drawQuiz() {
 }
 
 async function loadCategory() {
-    const response = await fetch(Categorys[Math.floor(Math.random(1, 3))].difficult.easy);
+    let selectorOne = document.getElementById("cat").selectedIndex;
+    let selectorTwo = document.getElementById("dif").selectedIndex;
+    let Category = document.getElementById("cat").options[selectorOne].value;
+    let Difficulty = document.getElementById("dif").options[selectorTwo].value;
+    const response = await fetch(`https://opentdb.com/api.php?amount=16&category=${Category}&difficulty=${Difficulty}&type=multiple`);
     const category = await response.json();
     return category
 }
@@ -89,14 +57,15 @@ async function loadCategory() {
 
 
 function useDateofFetch() {
-    document.getElementById("headline").innerHTML = `${Questions[i].category}`
-    document.getElementById("finish").innerHTML = `${Questions.length - 2}`;
-    document.getElementById("question").innerHTML = `${Questions[i].question} `;
-    document.getElementById("button1").innerHTML = `${Questions[i].incorrect_answers[0]} `;
-    document.getElementById("button2").innerHTML = `${Questions[i].incorrect_answers[1]} `;
-    document.getElementById("button3").innerHTML = `${Questions[i].incorrect_answers[2]} `;
-    document.getElementById("button4").innerHTML = `${Questions[i].correct_answer} `;
-    document.getElementById("position").innerHTML = `${i + 1}`;
+    console.log(Questions[0])
+    document.getElementById("headline").innerHTML = `${Questions[0][i].category}`
+    document.getElementById("finish").innerHTML = `${Questions[0].length - 1}`;
+    document.getElementById("question").innerHTML = `${Questions[0][i].question} `;
+    document.getElementById("button1").innerHTML = `${Questions[0][i].incorrect_answers[0]} `;
+    document.getElementById("button2").innerHTML = `${Questions[0][i].incorrect_answers[1]} `;
+    document.getElementById("button3").innerHTML = `${Questions[0][i].incorrect_answers[2]} `;
+    document.getElementById("button4").innerHTML = `${Questions[0][i].correct_answer} `;
+    document.getElementById("position").innerHTML = `${i}`;
 }
 
 function nextQuestion() {
@@ -107,32 +76,31 @@ function nextQuestion() {
         document.getElementById("percent").innerHTML = `${100 / 15 * True} % `;
     } else {
         i++;
-        document.getElementById("question").innerHTML = `${Questions[i].question} `;
-        document.getElementById("button1").innerHTML = `${Questions[i].incorrect_answers[0]} `;
-        document.getElementById("button2").innerHTML = `${Questions[i].incorrect_answers[1]} `;
-        document.getElementById("button3").innerHTML = `${Questions[i].incorrect_answers[2]} `;
-        document.getElementById("button4").innerHTML = `${Questions[i].correct_answer} `;
+        document.getElementById("question").innerHTML = `${Questions[0][i].question} `;
+        document.getElementById("button1").innerHTML = `${Questions[0][i].incorrect_answers[0]} `;
+        document.getElementById("button2").innerHTML = `${Questions[0][i].incorrect_answers[1]} `;
+        document.getElementById("button3").innerHTML = `${Questions[0][i].incorrect_answers[2]} `;
+        document.getElementById("button4").innerHTML = `${Questions[0][i].correct_answer} `;
         document.getElementById("position").innerHTML = `${i}`;
         console.log(i)
     }
 }
 
 
-document.addEventListener("DOMContentLoaded", async () => {
+async function fetchAPI() {
     let category = [];
     try {
         category = await loadCategory();
     } catch (e) {
         console.log("Error" + e);
     }
-    for (let i = 0; i < 16; i++) {
-        Questions.push(category.results[i])
-    }
-    Questions.push(category);
+    Questions.push(category.results);
     useDateofFetch();
     addHandler();
+    document.getElementById("startscreen").style.display = "none";
 
-})
+}
+
 
 
 function restart() {
@@ -145,10 +113,10 @@ function endScreen() {
     <h1>You're done!</h1>
     <div id="data">
         <div id="q">
-            <p id="trueq">12</p>
-            <p id="falseq">4</p>
+            <p id="trueq"></p>
+            <p id="falseq"></p>
         </div>
-        <p id="percent">20%</p>
+        <p id="percent"></p>
         <button onclick="restart()"> Replay </button>
     </div>
 </div>`
