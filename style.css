@@ -2,9 +2,6 @@
   background: #ea3367 !important;
   color: #ffffff !important; }
 
-html {
-  overflow: hidden; }
-
 body {
   align-items: center;
   display: flex;
@@ -20,8 +17,7 @@ body {
 header {
   height: 10vh;
   width: 100%; }
-  header #category {
-    margin-top: 50px;
+  header #headline {
     color: #fce5eb;
     font-weight: 700;
     text-align: center;
@@ -30,6 +26,7 @@ header {
   header #progbar {
     letter-spacing: 0.5rem;
     color: #fce5eb;
+    margin-bottom: 20px;
     font-weight: 700;
     text-align: center;
     font-size: 2rem;
@@ -47,7 +44,7 @@ main {
   height: 90vh;
   display: flex; }
   main #questions {
-    margin: 100px 0px 100px 0px;
+    margin: 50px 0px 50px 0px;
     height: 100px;
     text-align: center; }
     main #questions .question {
@@ -57,7 +54,8 @@ main {
     justify-content: center;
     align-items: center;
     display: flex;
-    flex-wrap: wrap; }
+    flex-wrap: wrap;
+    margin-top: 100px; }
 
 button {
   margin: 10px 0px 10px 0px;
@@ -90,16 +88,20 @@ button {
     text-align: center;
     color: #fce5eb; }
   #end #svg {
-    width: 100%; }
+    width: 100%;
+    height: 30%; }
   #end #data {
     font-size: 2rem;
     font-family: "Open Sans", sans-serif;
     font-weight: 700;
     display: flex;
     flex-direction: column;
+    align-items: center;
     color: #fce5eb; }
     #end #data #q {
-      display: flex; }
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; }
       #end #data #q #trueq {
         margin: 0px 10px 0px 10px; }
       #end #data #q #falseq {
@@ -125,17 +127,12 @@ button {
   color: #fce5eb; }
   #startscreen h1 {
     width: 80%;
-    text-align: center;
-    margin: 10px 0px 150px 0px; }
+    text-align: center; }
   #startscreen section {
     display: flex;
     flex-direction: column;
     width: 80%;
     font-size: 1.5rem; }
-    #startscreen section button {
-      margin-top: 20px; }
-    #startscreen section label {
-      margin: 20px 0px 20px 0px; }
     #startscreen section select {
       color: #fce5eb;
       margin: 50px 0px 50px 0px;

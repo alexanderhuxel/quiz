@@ -9,7 +9,7 @@ $font: 'Open Sans', sans-serif
     background: $active!important
     color: $passive!important
 html
-    overflow: hidden
+    // overflow: hidden
 body
     align-items: center
     display: flex
@@ -25,8 +25,7 @@ body
 header
     height: 10vh
     width: 100%
-    #category
-        margin-top: 50px
+    #headline
         color: $font-light
         font-weight: 700
         text-align: center
@@ -35,6 +34,7 @@ header
     #progbar
         letter-spacing: .5rem
         color: $font-light
+        margin-bottom: 20px
         font-weight: 700
         text-align: center
         font-size: 2rem
@@ -51,7 +51,7 @@ main
     height: 90vh
     display: flex
     #questions
-        margin: 100px 0px 100px 0px
+        margin: 50px 0px 50px 0px
         height: 100px
         text-align: center
         .question
@@ -62,7 +62,7 @@ main
         align-items: center
         display: flex
         flex-wrap: wrap
-
+        margin-top: 100px
 button
     margin: 10px 0px 10px 0px
     font-size: 1rem
@@ -94,15 +94,19 @@ button
         color: $font-light
     #svg
         width: 100%
+        height: 30%
     #data
         font-size: 2rem
         font-family: $font
         font-weight: 700
         display: flex
         flex-direction: column
+        align-items: center
         color: $font-light
         #q
             display: flex
+            flex-wrap: wrap
+            justify-content: center
             #trueq
                 margin: 0px 10px 0px 10px
             #falseq
@@ -128,16 +132,13 @@ button
     h1
         width: 80%
         text-align: center
-        margin: 10px 0px 150px 0px
     section
         display: flex
         flex-direction: column
         width: 80%
         font-size: 1.5rem
         button
-            margin-top: 20px
         label
-            margin: 20px 0px 20px 0px
         select
             color: $font-light
             margin: 50px 0px 50px 0px

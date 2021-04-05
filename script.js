@@ -27,7 +27,7 @@ const Categorys = [
     }
 ]
 
-let Link = "";
+let Link;
 let Questions = [];
 let True = 0;
 let False = 0;
@@ -37,8 +37,8 @@ let i = 0;
 // Eventlisteners
 function addHandler() {
     document.getElementById("button4").addEventListener("click", () => {
-        True++;
         nextQuestion();
+        True++;
     });
 
     let button = document.getElementsByClassName("button");
@@ -68,10 +68,7 @@ function sendCategory() {
     let selectorTwo = document.getElementById("dif").selectedIndex;
     let Cat = document.getElementById("cat").options[selectorOne].value;
     let Dif = document.getElementById("dif").options[selectorTwo].value;
-    if (Cat == "music" && Dif == "easy") {
-        Link == Categorys[0].difficult.easy
-        document.getElementById("startscreen").style.display = "none"
-    }
+    document.getElementById("startscreen").style.display = "none";
 
 }
 
@@ -83,7 +80,7 @@ function drawQuiz() {
 }
 
 async function loadCategory() {
-    const response = await fetch(Categorys[0].difficult.hard);
+    const response = await fetch(Categorys[Math.floor(Math.random(1, 3))].difficult.easy);
     const category = await response.json();
     return category
 }
@@ -92,13 +89,14 @@ async function loadCategory() {
 
 
 function useDateofFetch() {
+    document.getElementById("headline").innerHTML = `${Questions[i].category}`
     document.getElementById("finish").innerHTML = `${Questions.length - 2}`;
     document.getElementById("question").innerHTML = `${Questions[i].question} `;
     document.getElementById("button1").innerHTML = `${Questions[i].incorrect_answers[0]} `;
     document.getElementById("button2").innerHTML = `${Questions[i].incorrect_answers[1]} `;
     document.getElementById("button3").innerHTML = `${Questions[i].incorrect_answers[2]} `;
     document.getElementById("button4").innerHTML = `${Questions[i].correct_answer} `;
-    document.getElementById("position").innerHTML = `${i}`;
+    document.getElementById("position").innerHTML = `${i + 1}`;
 }
 
 function nextQuestion() {
@@ -138,12 +136,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 function restart() {
-    window.location.href = "/";
+    window.location.href = "http://alexander-huxel.developerakademie.com/code/quiz/";
 }
 
 function endScreen() {
     return `<div id="end">
-    <img id="svg" src="../img/end.svg">
+    <img id="svg" src="img/end.svg">
     <h1>You're done!</h1>
     <div id="data">
         <div id="q">
