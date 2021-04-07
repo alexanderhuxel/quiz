@@ -134,10 +134,12 @@ button
         width: 80%
         text-align: center
     section
+        align-items: center
         display: flex
         flex-direction: column
         width: 80%
         font-size: 1.5rem
+
         button
         label
         select
@@ -160,3 +162,17 @@ button
             -webkit-appearance: none
             -moz-appearance: none
             transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease
+
+@media screen and ( min-width: 1000px )
+    #startscreen
+        section
+            width: 50%!important
+        button
+            width: 75%!important
+    main
+        width: 50%
+        button
+            width: 50vw!important
+    #end
+        button
+            width: 50vw!important

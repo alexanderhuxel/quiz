@@ -130,6 +130,7 @@ button {
     width: 80%;
     text-align: center; }
   #startscreen section {
+    align-items: center;
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -154,5 +155,19 @@ button {
       -webkit-appearance: none;
       -moz-appearance: none;
       transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease; }
+
+@media screen and (min-width: 1000px) {
+  #startscreen section {
+    width: 50% !important; }
+  #startscreen button {
+    width: 75% !important; }
+
+  main {
+    width: 50%; }
+    main button {
+      width: 50vw !important; }
+
+  #end button {
+    width: 50vw !important; } }
 
 /*# sourceMappingURL=style.css.map */

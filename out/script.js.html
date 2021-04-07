@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: script.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: script.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+/**
+ * @var allVariables
+ * @property  {array} Questions - the questions of the quiz
+ * @property {array  } list - the HTML of the buttons
+ * @property {number} True - the indictor of right answers
+ * @property {number} False - the indictor of false answers
+ * @property {number} i - the index of the current question
+ * 
+ */
+// CONFIG
+let Questions = [];
+let list = ['&lt;button class="button" id="button1">&lt;/button>', '&lt;button class="button" id="button2">&lt;/button>', '&lt;button class="button" id="button3">&lt;/button>', '&lt;button   id="button4">&lt;/button>']
+let True = 0;
+let False = 0;
+let i = 0;
+// CONFIG
+
+/**
+ * adding eventlistener to the id button4 (click) &lt;br>
+ * run nextQuestion(); &lt;br>
+ * True++; &lt;br>
+ * adding eventlistener to all buttons with the class button (click) &lt;br>
+ * run nextQuestion() &lt;br>
+ * False++;
+ * @property {function} nextQuestion - display the nextquestion
+ * @property {number} True - the value of the Rightanswers
+ * @property {number} False - the value of the Rightanswers
+ */
+
+function addHandler() {
+    document.getElementById("button4").addEventListener("click", () => {
+        nextQuestion();
+        True++;
+    });
+
+    let button = document.getElementsByClassName("button");
+    for (let i = 0; i &lt; button.length; i++) {
+        button[i].addEventListener("click", () => {
+            nextQuestion();
+            False++;
+        })
+    }
+
+
+}
+
+
+
+
+
+
+/**
+ * Initial all need functions
+ * @property {function} drawQuiz
+ */
+function init() {
+
+    drawQuiz();
+}
+
+/**
+ * shuffle the list array , change the innerHTML of the buttons set the question
+ */
+function drawQuiz() {
+    list = list.sort(() => Math.random() - 0.5);
+    document.getElementById("answer").innerHTML = `${list[0]}${list[1]}${list[2]}${list[3]}`;
+    document.getElementById("question").innerHTML = `${Questions}`
+}
+/**
+ * Download data from the API .
+ * @property {string} url - https://opentdb.com/api.php?amount=16&amp;category=${Category}&amp;difficulty=${Difficulty}&amp;type=multiple
+ * @property {number} selectorOne - the id of the first inputfield
+ * @property {number} selectorTwo - the id of the first inputfield
+ * @property {number} Category - the id of the first option
+ * @property {number} Difficulty - the id of the first option
+ * @example 
+ * const response = await fetch(`https://opentdb.com/api.php?amount=16&amp;category=${Category}&amp;difficulty=${Difficulty}&amp;type=multiple`);
+    const category = await response.json();
+    return category
+ * @returns {Promise&lt;string>}  - The data from the URL.
+ */
+async function loadCategory() {
+    let selectorOne = document.getElementById("cat").selectedIndex;
+    let selectorTwo = document.getElementById("dif").selectedIndex;
+    let Category = document.getElementById("cat").options[selectorOne].value;
+    let Difficulty = document.getElementById("dif").options[selectorTwo].value;
+    const response = await fetch(`https://opentdb.com/api.php?amount=16&amp;category=${Category}&amp;difficulty=${Difficulty}&amp;type=multiple`);
+    const category = await response.json();
+    return category
+}
+
+/**
+ * generating the questions and the answers in the HTML 
+ */
+
+
+function useDateofFetch() {
+    document.getElementById("headline").innerHTML = `${Questions[0][i].category}`
+    document.getElementById("finish").innerHTML = `${Questions[0].length - 1}`;
+    document.getElementById("question").innerHTML = `${Questions[0][i].question} `;
+    document.getElementById("button1").innerHTML = `${Questions[0][i].incorrect_answers[0]} `;
+    document.getElementById("button2").innerHTML = `${Questions[0][i].incorrect_answers[1]} `;
+    document.getElementById("button3").innerHTML = `${Questions[0][i].incorrect_answers[2]} `;
+    document.getElementById("button4").innerHTML = `${Questions[0][i].correct_answer} `;
+    document.getElementById("position").innerHTML = `${i}`;
+}
+
+/**
+ * change the innerHTML with an if else statement
+ */
+function nextQuestion() {
+    if (i == 15) {
+        drawQuiz();
+        document.getElementById("body").innerHTML = endScreen();
+        document.getElementById("trueq").innerHTML = "Right Answers: " + True;
+        document.getElementById("falseq").innerHTML = "Wrong Answers: " + False;
+        document.getElementById("percent").innerHTML = `${100 / 15 * True} % `;
+    } else {
+        i++;
+        document.getElementById("question").innerHTML = `${Questions[0][i].question} `;
+        document.getElementById("button1").innerHTML = `${Questions[0][i].incorrect_answers[0]} `;
+        document.getElementById("button2").innerHTML = `${Questions[0][i].incorrect_answers[1]} `;
+        document.getElementById("button3").innerHTML = `${Questions[0][i].incorrect_answers[2]} `;
+        document.getElementById("button4").innerHTML = `${Questions[0][i].correct_answer} `;
+        document.getElementById("position").innerHTML = `${i}`;
+        console.log(i)
+    }
+}
+/**
+ * loading the data out of the API from the &lt;br>
+ * pushing the data of the API to the global Varialbe Questions &lt;br>
+ * run  useDateofFetch() &lt;br>
+ * run  addHandler() &lt;br>
+ * show the startscreen of the application
+ * @property {array} Category - the data of the API
+ * @property {function} useDateofFetch
+ * @property {function} addHandler 
+ */
+
+async function fetchAPI() {
+    let category = [];
+    try {
+        category = await loadCategory();
+    } catch (e) {
+        console.log("Error" + e);
+    }
+    Questions.push(category.results);
+    useDateofFetch();
+    addHandler();
+    document.getElementById("startscreen").style.display = "none";
+
+}
+
+/**
+ * reload the page by changing the window location
+ */
+
+function restart() {
+    window.location.href = "http://alexander-huxel.developerakademie.com/code/quiz/";
+}
+
+/**
+ * change the innerHTML 
+ * @return HTML code
+ */
+
+function endScreen() {
+    return `&lt;div id="end">
+    &lt;img id="svg" src="img/end.svg">
+    &lt;h1>You're done!&lt;/h1>
+    &lt;div id="data">
+        &lt;div id="q">
+            &lt;p id="trueq">&lt;/p>
+            &lt;p id="falseq">&lt;/p>
+        &lt;/div>
+        &lt;p id="percent">&lt;/p>
+        &lt;button onclick="restart()"> Replay &lt;/button>
+    &lt;/div>
+&lt;/div>`
+
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addHandler">addHandler</a></li><li><a href="global.html#allVariables">allVariables</a></li><li><a href="global.html#drawQuiz">drawQuiz</a></li><li><a href="global.html#endScreen">endScreen</a></li><li><a href="global.html#fetchAPI">fetchAPI</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#loadCategory">loadCategory</a></li><li><a href="global.html#nextQuestion">nextQuestion</a></li><li><a href="global.html#restart">restart</a></li><li><a href="global.html#useDateofFetch">useDateofFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Wed Apr 07 2021 19:22:31 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
