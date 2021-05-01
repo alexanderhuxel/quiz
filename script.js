@@ -58,13 +58,19 @@ function init() {
 
     drawQuiz();
 }
+/**
+ * shuffle the array with the buttons
+ */
+function shuffleList() {
+    list = list.sort(() => Math.random() - 0.5);
+    document.getElementById("answer").innerHTML = `${list[0]}${list[1]}${list[2]}${list[3]}`;
+}
 
 /**
  * shuffle the list array , change the innerHTML of the buttons set the question
  */
 function drawQuiz() {
-    list = list.sort(() => Math.random() - 0.5);
-    document.getElementById("answer").innerHTML = `${list[0]}${list[1]}${list[2]}${list[3]}`;
+    shuffleList();
     document.getElementById("question").innerHTML = `${Questions}`
 }
 /**
@@ -117,6 +123,8 @@ function nextQuestion() {
         document.getElementById("falseq").innerHTML = "Wrong Answers: " + False;
         document.getElementById("percent").innerHTML = `${100 / 15 * True} % `;
     } else {
+        shuffleList();
+        addHandler();
         i++;
         document.getElementById("question").innerHTML = `${Questions[0][i].question} `;
         document.getElementById("button1").innerHTML = `${Questions[0][i].incorrect_answers[0]} `;
@@ -124,7 +132,6 @@ function nextQuestion() {
         document.getElementById("button3").innerHTML = `${Questions[0][i].incorrect_answers[2]} `;
         document.getElementById("button4").innerHTML = `${Questions[0][i].correct_answer} `;
         document.getElementById("position").innerHTML = `${i}`;
-        console.log(i)
     }
 }
 /**
